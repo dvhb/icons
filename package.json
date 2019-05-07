@@ -14,9 +14,9 @@
     "tslib": "^1.9.3"
   },
   "devDependencies": {
+    "@dvhb/tslint-config": "^1.0.6",
     "@oclif/dev-cli": "^1.22.0",
     "@oclif/test": "^1.2.4",
-    "@oclif/tslint": "^3.1.1",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.6",
     "@types/node": "^10.14.5",
@@ -58,5 +58,10 @@
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif-dev readme && git add README.md"
   },
-  "types": "lib/index.d.ts"
+  "types": "lib/index.d.ts",
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true,
+    "trailingComma": "all"
+  }
 }
