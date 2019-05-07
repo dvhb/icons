@@ -22,6 +22,8 @@
     "@types/node": "^10.14.5",
     "chai": "^4.2.0",
     "globby": "^8.0.2",
+    "husky": "^2.2.0",
+    "lint-staged": "^8.1.6",
     "mocha": "^5.2.0",
     "nyc": "^14.1.0",
     "ts-node": "^8.1.0",
@@ -63,5 +65,16 @@
     "printWidth": 120,
     "singleQuote": true,
     "trailingComma": "all"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.tsx?": [
+      "tslint --fix",
+      "git add"
+    ]
   }
 }
