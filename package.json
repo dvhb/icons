@@ -1,12 +1,50 @@
 {
   "name": "@dvhb/icons",
-  "description": "dvhb icons toolset",
   "version": "0.0.0",
+  "description": "dvhb icons toolset",
+  "keywords": [
+    "oclif"
+  ],
+  "homepage": "https://github.com/dvhb/icons",
+  "bugs": "https://github.com/dvhb/icons/issues",
+  "repository": "dvhb/icons",
+  "license": "MIT",
   "author": "Anton Savoskin @sairus2k",
+  "files": [
+    "/bin",
+    "/lib",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "bin": {
     "dvhb-icons": "./bin/run"
   },
-  "bugs": "https://github.com/dvhb/icons/issues",
+  "scripts": {
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "postpack": "rm -f oclif.manifest.json",
+    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
+    "posttest": "tslint -p test -t stylish",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.tsx?": [
+      "tslint --fix",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
   "dependencies": {
     "@oclif/command": "^1.5.13",
     "@oclif/config": "^1.12.12",
@@ -35,49 +73,11 @@
   "engines": {
     "node": ">=8.0.0"
   },
-  "files": [
-    "/bin",
-    "/lib",
-    "/npm-shrinkwrap.json",
-    "/oclif.manifest.json"
-  ],
-  "homepage": "https://github.com/dvhb/icons",
-  "keywords": [
-    "oclif"
-  ],
-  "license": "MIT",
-  "main": "lib/index.js",
   "oclif": {
     "commands": "./lib/commands",
     "bin": "dvhb-icons",
     "plugins": [
       "@oclif/plugin-help"
-    ]
-  },
-  "repository": "dvhb/icons",
-  "scripts": {
-    "postpack": "rm -f oclif.manifest.json",
-    "posttest": "tslint -p test -t stylish",
-    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
-    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
-    "version": "oclif-dev readme && git add README.md"
-  },
-  "types": "lib/index.d.ts",
-  "prettier": {
-    "printWidth": 120,
-    "singleQuote": true,
-    "trailingComma": "all"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.tsx?": [
-      "tslint --fix",
-      "git add"
     ]
   }
 }
