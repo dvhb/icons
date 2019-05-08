@@ -28,28 +28,29 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`dvhb-icons hello [FILE]`](#dvhb-icons-hello-file)
+* [`dvhb-icons figma2svg`](#dvhb-icons-figma2svg)
 * [`dvhb-icons help [COMMAND]`](#dvhb-icons-help-command)
 
-## `dvhb-icons hello [FILE]`
+## `dvhb-icons figma2svg`
 
-describe the command here
+extract svg icons from figma
 
 ```
 USAGE
-  $ dvhb-icons hello [FILE]
+  $ dvhb-icons figma2svg
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -d, --dest=dest      (required) [default: icons] icons folder
+  -f, --fileId=fileId  (required) figma fileId
+  -h, --help           show CLI help
+  -p, --page=page      (required) [default: Icons] figma page
+  -t, --token=token    (required) figma token
 
 EXAMPLE
-  $ dvhb-icons hello
-  hello world from ./src/hello.ts!
+  $ dvhb-icons figma2svg
 ```
 
-_See code: [src/commands/hello.ts](https://github.com/dvhb/icons/blob/v0.0.0/src/commands/hello.ts)_
+_See code: [src/commands/figma2svg.ts](https://github.com/dvhb/icons/blob/v0.0.0/src/commands/figma2svg.ts)_
 
 ## `dvhb-icons help [COMMAND]`
 
