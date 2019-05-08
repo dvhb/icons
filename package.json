@@ -23,7 +23,7 @@
   },
   "scripts": {
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
-    "postpack": "rm -f oclif.manifest.json",
+    "postpack": "rm -f oclif.manifest.json && rm -f tsconfig.tsbuildinfo",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
     "posttest": "tslint -p test -t stylish",
     "version": "oclif-dev readme && git add README.md"
