@@ -19,7 +19,7 @@ $ npm install -g @dvhb/icons
 $ dvhb-icons COMMAND
 running command...
 $ dvhb-icons (-v|--version|version)
-@dvhb/icons/0.0.0 darwin-x64 node-v10.15.3
+@dvhb/icons/0.0.1 darwin-x64 node-v10.15.3
 $ dvhb-icons --help [COMMAND]
 USAGE
   $ dvhb-icons COMMAND
@@ -50,7 +50,7 @@ EXAMPLE
   $ dvhb-icons figma2svg
 ```
 
-_See code: [src/commands/figma2svg.ts](https://github.com/dvhb/icons/blob/v0.0.0/src/commands/figma2svg.ts)_
+_See code: [src/commands/figma2svg.ts](https://github.com/dvhb/icons/blob/v0.0.1/src/commands/figma2svg.ts)_
 
 ## `dvhb-icons help [COMMAND]`
 
