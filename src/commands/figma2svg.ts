@@ -3,7 +3,7 @@ import { Client, Document } from 'figma-js';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import * as pascalcase from 'pascalcase';
 import { resolve } from 'path';
-import { fetchSvg } from '../utils';
+import { fetchSvg, showError, showInfo } from '../utils';
 
 export default class Figma2svg extends Command {
   static description = 'extract svg icons from figma';
@@ -18,13 +18,13 @@ export default class Figma2svg extends Command {
     dest: flags.string({ char: 'd', description: 'icons folder', required: true, default: 'icons' }),
   };
 
-  parserOutput = this.parse(Figma2svg);
+  flags = this.parse(Figma2svg).flags;
 
-  client = Client({ personalAccessToken: this.parserOutput.flags.token });
+  client = Client({ personalAccessToken: this.flags.token });
 
   async getDocument() {
     try {
-      const { data } = await this.client.file(this.parserOutput.flags.fileId);
+      const { data } = await this.client.file(this.flags.fileId);
       return data.document;
     } catch (e) {
       this.error(e);
@@ -33,7 +33,7 @@ export default class Figma2svg extends Command {
 
   async getImageUrls(ids: string[]) {
     try {
-      const { data } = await this.client.fileImages(this.parserOutput.flags.fileId, {
+      const { data } = await this.client.fileImages(this.flags.fileId, {
         ids,
         scale: 1,
         format: 'svg',
@@ -45,8 +45,7 @@ export default class Figma2svg extends Command {
   }
 
   async findComponents(document: Document) {
-    const { flags } = this.parserOutput;
-    const pageWithSvg = document.children.find(child => child.type === 'CANVAS' && child.name === flags.page);
+    const pageWithSvg = document.children.find(child => child.type === 'CANVAS' && child.name === this.flags.page);
     if (!pageWithSvg || !('children' in pageWithSvg)) return {};
     return pageWithSvg.children.reduce<{ [id: string]: string }>((acc, { id, type, name }) => {
       if (type === 'COMPONENT') {
@@ -57,20 +56,35 @@ export default class Figma2svg extends Command {
   }
 
   async run() {
-    const { flags } = this.parserOutput;
+    showInfo('Starting export');
+    if (!existsSync(this.flags.dest)) {
+      showInfo(`Creating folder "${this.flags.dest}"`);
+      mkdirSync(this.flags.dest);
+    }
 
-    if (!existsSync(flags.dest)) mkdirSync(flags.dest);
-
+    showInfo('Fetching document');
     const document = await this.getDocument();
-    if (!document) return;
+    if (!document) {
+      showError('No document found');
+      return;
+    }
 
     const components = await this.findComponents(document);
 
-    const urls = await this.getImageUrls(Object.keys(components));
-    if (!urls) return;
+    showInfo(`Found ${Object.keys(components).length} icons`);
 
+    showInfo('Fetching icons');
+    const urls = await this.getImageUrls(Object.keys(components));
+    if (!urls) {
+      showError('No icons found');
+      return;
+    }
+
+    showInfo('Writing icons to files');
     Object.keys(urls).forEach(async key => {
-      writeFileSync(resolve(flags.dest, `${pascalcase(components[key])}.svg`), await fetchSvg(urls[key]));
+      writeFileSync(resolve(this.flags.dest, `${pascalcase(components[key])}.svg`), await fetchSvg(urls[key]));
     });
+
+    showInfo('Finish export');
   }
 }
