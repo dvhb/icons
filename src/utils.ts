@@ -1,3 +1,4 @@
+import { spawn } from 'child_process';
 import { request } from 'https';
 
 export const fetchSvg = (url: string) =>
@@ -11,6 +12,17 @@ export const fetchSvg = (url: string) =>
     });
     req.on('error', reject);
     req.end();
+  });
+
+export const runCommand = (command: string, args?: string[]) =>
+  new Promise(resolve => {
+    const child = spawn(command, args);
+    child.stdout.pipe(process.stdout);
+    child.stderr.pipe(process.stderr);
+    child.on('close', code => {
+      showInfo(`child process exited with code ${code}`);
+      resolve();
+    });
   });
 
 const format = (time: Date) => time.toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1');
