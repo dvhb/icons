@@ -1,3 +1,4 @@
+import { flags } from '@oclif/command';
 import { Base } from '../base';
 import { runCommand } from '../utils';
 
@@ -8,9 +9,12 @@ export default class Generate extends Base {
 
   static flags = {
     ...Base.flags,
+    components: flags.string({ char: 'c', description: 'components folder', required: true, default: 'components' }),
   };
 
   async run() {
+    const { flags } = this.parse(Generate);
+    const { icons, components } = flags;
     runCommand('npx', [
       '@svgr/cli',
       '--icon',
@@ -19,8 +23,8 @@ export default class Generate extends Base {
       '--ext',
       'tsx',
       '-d',
-      'components/',
-      'icons/',
+      components,
+      icons,
     ]);
   }
 }
