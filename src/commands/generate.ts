@@ -12,10 +12,11 @@ export default class Generate extends Base {
     components: flags.string({ char: 'c', description: 'components folder', required: true, default: 'components' }),
   };
 
-  async run() {
-    const { flags } = this.parse(Generate);
-    const { icons, components } = flags;
-    runCommand('npx', [
+  flags = this.parse(Generate).flags;
+
+  async generateIcons() {
+    const { components, icons } = this.flags;
+    return runCommand('npx', [
       '@svgr/cli',
       '--icon',
       '--template',
@@ -26,5 +27,9 @@ export default class Generate extends Base {
       components,
       icons,
     ]);
+  }
+
+  async run() {
+    await this.generateIcons();
   }
 }
