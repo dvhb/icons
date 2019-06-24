@@ -10,23 +10,14 @@ export default class Generate extends Base {
   static flags = {
     ...Base.flags,
     components: flags.string({ char: 'c', description: 'components folder', required: true, default: 'components' }),
+    template: flags.string({ char: 't', description: 'template for icon files', required: true, default: 'template' }),
   };
 
   flags = this.parse(Generate).flags;
 
   async generateIcons() {
-    const { components, icons } = this.flags;
-    return runCommand('npx', [
-      '@svgr/cli',
-      '--icon',
-      '--template',
-      'src/svgrTemplate.js',
-      '--ext',
-      'tsx',
-      '-d',
-      components,
-      icons,
-    ]);
+    const { components, icons, template } = this.flags;
+    return runCommand('npx', ['@svgr/cli', '--icon', '--template', template, '--ext', 'tsx', '-d', components, icons]);
   }
 
   async generateIndex() {
