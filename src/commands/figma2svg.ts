@@ -57,9 +57,9 @@ export default class Figma2svg extends Base {
 
   async run() {
     showInfo('Starting export');
-    if (!existsSync(this.flags.dest)) {
-      showInfo(`Creating folder "${this.flags.dest}"`);
-      mkdirSync(this.flags.dest);
+    if (!existsSync(this.flags.icons)) {
+      showInfo(`Creating folder "${this.flags.icons}"`);
+      mkdirSync(this.flags.icons);
     }
 
     showInfo('Fetching document');
@@ -82,7 +82,7 @@ export default class Figma2svg extends Base {
 
     showInfo('Writing icons to files');
     Object.keys(urls).forEach(async key => {
-      writeFileSync(resolve(this.flags.dest, `${pascalcase(components[key])}.svg`), await fetchSvg(urls[key]));
+      writeFileSync(resolve(this.flags.icons, `${pascalcase(components[key])}.svg`), await fetchSvg(urls[key]));
     });
 
     showInfo('Finish export');
