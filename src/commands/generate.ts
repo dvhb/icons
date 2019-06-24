@@ -1,14 +1,13 @@
-import { Command, flags } from '@oclif/command';
+import { Base } from '../base';
 import { runCommand } from '../utils';
 
-export default class Generate extends Command {
+export default class Generate extends Base {
   static description = 'generate react components from svg icons';
 
   static examples = [`$ dvhb-icons generate`];
 
   static flags = {
-    help: flags.help({ char: 'h' }),
-    dest: flags.string({ char: 'd', description: 'icons folder', required: true, default: 'icons' }),
+    ...Base.flags,
   };
 
   async run() {

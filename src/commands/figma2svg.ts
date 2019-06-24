@@ -1,21 +1,21 @@
-import { Command, flags } from '@oclif/command';
+import { flags } from '@oclif/command';
 import { Client, Document } from 'figma-js';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import * as pascalcase from 'pascalcase';
 import { resolve } from 'path';
+import { Base } from '../base';
 import { fetchSvg, showError, showInfo } from '../utils';
 
-export default class Figma2svg extends Command {
+export default class Figma2svg extends Base {
   static description = 'extract svg icons from figma';
 
   static examples = [`$ dvhb-icons figma2svg`];
 
   static flags = {
-    help: flags.help({ char: 'h' }),
+    ...Base.flags,
     token: flags.string({ char: 't', description: 'figma token', required: true, env: 'FIGMA_TOKEN' }),
     fileId: flags.string({ char: 'f', description: 'figma fileId', required: true, env: 'FIGMA_FILE_ID' }),
     page: flags.string({ char: 'p', description: 'figma page', required: true, default: 'Icons', env: 'FIGMA_PAGE' }),
-    dest: flags.string({ char: 'd', description: 'icons folder', required: true, default: 'icons' }),
   };
 
   flags = this.parse(Figma2svg).flags;
