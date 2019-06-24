@@ -1,10 +1,9 @@
 import { flags } from '@oclif/command';
 import { Client, Document } from 'figma-js';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
-import * as pascalcase from 'pascalcase';
 import { resolve } from 'path';
 import { Base } from '../base';
-import { fetchSvg, showError, showInfo } from '../utils';
+import { fetchSvg, last, showError, showInfo, toCamelCase } from '../utils';
 
 export default class Figma2svg extends Base {
   static description = 'extract svg icons from figma';
@@ -55,6 +54,11 @@ export default class Figma2svg extends Base {
     }, {});
   }
 
+  formatIconName = (component: string) => {
+    const name = last(component.split('/'));
+    return `${toCamelCase(name)}.svg`;
+  };
+
   async run() {
     showInfo('Starting export');
     if (!existsSync(this.flags.icons)) {
@@ -82,7 +86,7 @@ export default class Figma2svg extends Base {
 
     showInfo('Writing icons to files');
     Object.keys(urls).forEach(async key => {
-      writeFileSync(resolve(this.flags.icons, `${pascalcase(components[key])}.svg`), await fetchSvg(urls[key]));
+      writeFileSync(resolve(this.flags.icons, this.formatIconName(components[key])), await fetchSvg(urls[key]));
     });
 
     showInfo('Finish export');

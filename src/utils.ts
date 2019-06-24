@@ -28,3 +28,15 @@ export const runCommand = (command: string, args?: string[]) =>
 const format = (time: Date) => time.toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1');
 export const showError = (message: string) => console.error('\x1b[31m', message, '\x1b[0m');
 export const showInfo = (message: string) => console.info('\x1b[34m[', format(new Date()), ']\x1b[0m', message);
+
+export const last = <T>(arr: T[]) => arr[arr.length - 1];
+
+export const toCamelCase = (str: string) => {
+  const s =
+    str &&
+    str
+      .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)!
+      .map(x => x.slice(0, 1).toUpperCase() + x.slice(1).toLowerCase())
+      .join('');
+  return s.slice(0, 1).toLowerCase() + s.slice(1);
+};
