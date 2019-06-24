@@ -1,5 +1,7 @@
 import { flags, Command } from '@oclif/command';
+import { config } from 'dotenv';
 
+config();
 export abstract class Base extends Command {
   static flags = {
     help: flags.help({ char: 'h' }),
