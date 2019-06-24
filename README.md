@@ -19,7 +19,7 @@ $ npm install -g @dvhb/icons
 $ dvhb-icons COMMAND
 running command...
 $ dvhb-icons (-v|--version|version)
-@dvhb/icons/0.0.2 darwin-x64 node-v10.16.0
+@dvhb/icons/0.1.0 darwin-x64 node-v10.16.0
 $ dvhb-icons --help [COMMAND]
 USAGE
   $ dvhb-icons COMMAND
@@ -29,6 +29,7 @@ USAGE
 # Commands
 <!-- commands -->
 * [`dvhb-icons figma2svg`](#dvhb-icons-figma2svg)
+* [`dvhb-icons generate`](#dvhb-icons-generate)
 * [`dvhb-icons help [COMMAND]`](#dvhb-icons-help-command)
 
 ## `dvhb-icons figma2svg`
@@ -40,9 +41,9 @@ USAGE
   $ dvhb-icons figma2svg
 
 OPTIONS
-  -d, --dest=dest      (required) [default: icons] icons folder
   -f, --fileId=fileId  (required) figma fileId
   -h, --help           show CLI help
+  -i, --icons=icons    (required) [default: icons] icons folder
   -p, --page=page      (required) [default: Icons] figma page
   -t, --token=token    (required) figma token
 
@@ -50,7 +51,26 @@ EXAMPLE
   $ dvhb-icons figma2svg
 ```
 
-_See code: [src/commands/figma2svg.ts](https://github.com/dvhb/icons/blob/v0.0.2/src/commands/figma2svg.ts)_
+_See code: [src/commands/figma2svg.ts](https://github.com/dvhb/icons/blob/v0.1.0/src/commands/figma2svg.ts)_
+
+## `dvhb-icons generate`
+
+generate react components from svg icons
+
+```
+USAGE
+  $ dvhb-icons generate
+
+OPTIONS
+  -c, --components=components  (required) [default: components] components folder
+  -h, --help                   show CLI help
+  -i, --icons=icons            (required) [default: icons] icons folder
+
+EXAMPLE
+  $ dvhb-icons generate
+```
+
+_See code: [src/commands/generate.ts](https://github.com/dvhb/icons/blob/v0.1.0/src/commands/generate.ts)_
 
 ## `dvhb-icons help [COMMAND]`
 
