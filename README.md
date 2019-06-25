@@ -19,7 +19,7 @@ $ npm install -g @dvhb/icons
 $ dvhb-icons COMMAND
 running command...
 $ dvhb-icons (-v|--version|version)
-@dvhb/icons/0.1.3 darwin-x64 node-v10.16.0
+@dvhb/icons/0.1.4 darwin-x64 node-v10.16.0
 $ dvhb-icons --help [COMMAND]
 USAGE
   $ dvhb-icons COMMAND
@@ -51,7 +51,7 @@ EXAMPLE
   $ dvhb-icons figma2svg
 ```
 
-_See code: [src/commands/figma2svg.ts](https://github.com/dvhb/icons/blob/v0.1.3/src/commands/figma2svg.ts)_
+_See code: [src/commands/figma2svg.ts](https://github.com/dvhb/icons/blob/v0.1.4/src/commands/figma2svg.ts)_
 
 ## `dvhb-icons generate`
 
@@ -71,7 +71,7 @@ EXAMPLE
   $ dvhb-icons generate
 ```
 
-_See code: [src/commands/generate.ts](https://github.com/dvhb/icons/blob/v0.1.3/src/commands/generate.ts)_
+_See code: [src/commands/generate.ts](https://github.com/dvhb/icons/blob/v0.1.4/src/commands/generate.ts)_
 
 ## `dvhb-icons help [COMMAND]`
 
@@ -88,5 +88,5 @@ OPTIONS
   --all  see all commands in CLI
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.6/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.0/src/commands/help.ts)_
 <!-- commandsstop -->
