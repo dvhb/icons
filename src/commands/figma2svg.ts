@@ -1,9 +1,23 @@
 import { flags } from '@oclif/command';
-import { Client, Document } from 'figma-js';
+import { Client, Document, Node } from 'figma-js';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
 import { Base } from '../base';
 import { fetchSvg, last, showError, showInfo, toCamelCase } from '../utils';
+
+const extractIcons = (node?: Node): { [id: string]: string } => {
+  if (!node || !('children' in node)) return {};
+  return node.children.reduce((acc, child) => {
+    const { id, type, name } = child;
+    if (type === 'COMPONENT') {
+      return { ...acc, [id]: name };
+    }
+    if (type === 'FRAME') {
+      return { ...acc, ...extractIcons(child) };
+    }
+    return acc;
+  }, {});
+};
 
 export default class Figma2svg extends Base {
   static description = 'extract svg icons from figma';
@@ -44,14 +58,8 @@ export default class Figma2svg extends Base {
   }
 
   async findComponents(document: Document) {
-    const pageWithSvg = document.children.find(child => child.type === 'CANVAS' && child.name === this.flags.page);
-    if (!pageWithSvg || !('children' in pageWithSvg)) return {};
-    return pageWithSvg.children.reduce<{ [id: string]: string }>((acc, { id, type, name }) => {
-      if (type === 'COMPONENT') {
-        acc[id] = name;
-      }
-      return acc;
-    }, {});
+    const canvas = document.children.find(child => child.type === 'CANVAS' && child.name === this.flags.page);
+    return extractIcons(canvas);
   }
 
   formatIconName = (component: string) => {
