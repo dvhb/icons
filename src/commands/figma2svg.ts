@@ -3,21 +3,7 @@ import { Client, Document, Node } from 'figma-js';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
 import { Base } from '../base';
-import { fetchSvg, last, showError, showInfo, toCamelCase } from '../utils';
-
-const extractIcons = (node?: Node): { [id: string]: string } => {
-  if (!node || !('children' in node)) return {};
-  return node.children.reduce((acc, child) => {
-    const { id, type, name } = child;
-    if (type === 'COMPONENT') {
-      return { ...acc, [id]: name };
-    }
-    if (type === 'FRAME') {
-      return { ...acc, ...extractIcons(child) };
-    }
-    return acc;
-  }, {});
-};
+import { fetchSvg, isNumber, last, showError, showInfo, toCamelCase } from '../utils';
 
 export default class Figma2svg extends Base {
   static description = 'extract svg icons from figma';
@@ -34,6 +20,32 @@ export default class Figma2svg extends Base {
   flags = this.parse(Figma2svg).flags;
 
   client = Client({ personalAccessToken: this.flags.token });
+
+  iconNamesRepetitionRate: { [key: string]: number | undefined } = {};
+
+  createUniqueIconName(name: string) {
+    const rate = this.iconNamesRepetitionRate[name];
+    if (isNumber(rate)) {
+      this.iconNamesRepetitionRate[name] = rate + 1;
+      return `${name}${rate + 1}`;
+    }
+    this.iconNamesRepetitionRate[name] = 0;
+    return name;
+  }
+
+  extractIcons(node?: Node): { [id: string]: string } {
+    if (!node || !('children' in node)) return {};
+    return node.children.reduce((acc, child) => {
+      const { id, type, name } = child;
+      if (type === 'COMPONENT' || type === 'INSTANCE') {
+        return { ...acc, [id]: this.createUniqueIconName(name) };
+      }
+      if (type === 'FRAME') {
+        return { ...acc, ...this.extractIcons(child) };
+      }
+      return acc;
+    }, {});
+  }
 
   async getDocument() {
     try {
@@ -59,7 +71,7 @@ export default class Figma2svg extends Base {
 
   async findComponents(document: Document) {
     const canvas = document.children.find(child => child.type === 'CANVAS' && child.name === this.flags.page);
-    return extractIcons(canvas);
+    return this.extractIcons(canvas);
   }
 
   formatIconName = (component: string) => {

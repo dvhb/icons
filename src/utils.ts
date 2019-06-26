@@ -30,6 +30,8 @@ export const showError = (message: string) => console.error('\x1b[31m', message,
 export const showInfo = (message: string) => console.info('\x1b[34m[', format(new Date()), ']\x1b[0m', message);
 
 export const last = <T>(arr: T[]) => arr[arr.length - 1];
+export const isUndefined = (val: unknown): val is undefined => val === undefined;
+export const isNumber = (val: unknown): val is number => typeof val === 'number' && val === val;
 
 export const toCamelCase = (str: string) => {
   const s =
