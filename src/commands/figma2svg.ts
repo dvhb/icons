@@ -2,6 +2,15 @@ import { flags } from '@oclif/command';
 import { Client, Document, Node } from 'figma-js';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
+import * as SVGO from 'svgo';
+
+const js2svg: SVGO.Js2SvgOptions = {
+  indent: 2,
+  pretty: true,
+};
+const svgoBase = new SVGO({ js2svg });
+const svgoClear = new SVGO({ js2svg, plugins: [{ removeAttrs: { attrs: '(stroke|fill)' } }] });
+
 import { Base } from '../base';
 import { fetchSvg, isNumber, last, showError, showInfo, toCamelCase } from '../utils';
 
@@ -23,6 +32,8 @@ export default class Figma2svg extends Base {
 
   iconNamesRepetitionRate: { [key: string]: number | undefined } = {};
 
+  frames: { [key: string]: string[] } = {};
+
   createUniqueIconName(name: string) {
     const rate = this.iconNamesRepetitionRate[name];
     if (isNumber(rate)) {
@@ -37,7 +48,8 @@ export default class Figma2svg extends Base {
     if (!node || !('children' in node)) return {};
     return node.children.reduce((acc, child) => {
       const { id, type, name } = child;
-      if (type === 'COMPONENT' || type === 'INSTANCE') {
+      if (type === 'COMPONENT') {
+        this.frames[node.name] ? this.frames[node.name].push(id) : (this.frames[node.name] = [id]);
         return { ...acc, [id]: this.createUniqueIconName(name) };
       }
       if (type === 'FRAME') {
@@ -83,6 +95,17 @@ export default class Figma2svg extends Base {
     return `${toCamelCase(name)}.svg`;
   };
 
+  optimizeIcon = (iconData: string, frameName: string) => {
+    switch (frameName) {
+      case 'Colorless':
+        return svgoClear.optimize(iconData).then(({ data }) => data);
+      case 'Colored':
+        return svgoBase.optimize(iconData).then(({ data }) => data);
+      default:
+        return iconData;
+    }
+  };
+
   async run() {
     showInfo('Starting export');
     if (!existsSync(this.flags.icons)) {
@@ -98,8 +121,10 @@ export default class Figma2svg extends Base {
     }
 
     const components = await this.findComponents(document);
+    const frameNames = Object.keys(this.frames);
 
-    showInfo(`Found ${Object.keys(components).length} icons`);
+    showInfo(`Found ${Object.keys(components).length} icons in ${frameNames.length} frames`);
+    showInfo(`Frames: ${frameNames.join(', ')}`);
 
     showInfo('Fetching icons');
     const urls = await this.getImageUrls(Object.keys(components));
@@ -109,8 +134,14 @@ export default class Figma2svg extends Base {
     }
 
     showInfo('Writing icons to files');
-    Object.keys(urls).forEach(async key => {
-      writeFileSync(resolve(this.flags.icons, this.formatIconName(components[key])), await fetchSvg(urls[key]));
+    frameNames.forEach(frameName => {
+      const iconKeys = this.frames[frameName];
+      iconKeys.forEach(async key => {
+        const iconPath = resolve(this.flags.icons, this.formatIconName(components[key]));
+        const rawIcon = await fetchSvg(urls[key]);
+        const iconData = await this.optimizeIcon(rawIcon, frameName);
+        writeFileSync(iconPath, iconData);
+      });
     });
 
     showInfo('Finish export');
