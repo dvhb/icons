@@ -1,6 +1,6 @@
 {
   "name": "@dvhb/icons",
-  "version": "0.1.4",
+  "version": "0.0.0-development",
   "description": "dvhb icons toolset",
   "keywords": [
     "oclif"
@@ -26,7 +26,8 @@
     "postpack": "rm -f oclif.manifest.json && rm -f tsconfig.tsbuildinfo",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
     "posttest": "tslint -p test -t stylish",
-    "version": "oclif-dev readme && git add README.md"
+    "version": "oclif-dev readme && git add README.md",
+    "semantic-release": "semantic-release"
   },
   "husky": {
     "hooks": {
@@ -73,7 +74,8 @@
     "nyc": "^14.1.0",
     "ts-node": "^8.1.0",
     "tslint": "^5.16.0",
-    "typescript": "^3.4.5"
+    "typescript": "^3.4.5",
+    "semantic-release": "^15.13.18"
   },
   "engines": {
     "node": ">=8.0.0"

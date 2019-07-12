@@ -1,0 +1,16 @@
+language: node_js
+
+node_js:
+  - '10'
+  - '8'
+
+branches:
+  except:
+    - /^v[0-9]/
+
+jobs:
+  include:
+    - stage: release
+      node_js: lts/*
+      script:
+        - npx semantic-release
