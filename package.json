@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^7.6.0",
-    "@commitlint/config-conventional": "^7.6.0",
+    "@commitlint/config-conventional": "^8.0.0",
     "@dvhb/tslint-config": "^1.0.6",
     "@oclif/dev-cli": "^1.22.0",
     "@oclif/test": "^1.2.4",
