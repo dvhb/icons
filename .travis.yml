@@ -8,6 +8,9 @@ branches:
   except:
     - /^v[0-9]/
 
+before_install:
+  - echo "//npm.dvhb.io/:_authToken=\${NPM_TOKEN}" >> .npmrc
+
 jobs:
   include:
     - stage: release
