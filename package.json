@@ -1,6 +1,6 @@
 {
   "name": "@dvhb/icons",
-  "version": "0.0.0-development",
+  "version": "0.1.5",
   "description": "dvhb icons toolset",
   "keywords": [
     "oclif"
