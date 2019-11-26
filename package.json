@@ -66,6 +66,7 @@
     "@oclif/dev-cli": "^1.22.2",
     "@oclif/semantic-release": "^3.1.1",
     "@oclif/test": "^1.2.5",
+    "@semantic-release/npm": "^5.1.15",
     "@types/chai": "^4.2.5",
     "@types/dotenv": "^8.2.0",
     "@types/mocha": "^5.2.6",
