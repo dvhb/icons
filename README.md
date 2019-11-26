@@ -19,7 +19,7 @@ $ npm install -g @dvhb/icons
 $ dvhb-icons COMMAND
 running command...
 $ dvhb-icons (-v|--version|version)
-@dvhb/icons/1.0.5 linux-x64 node-v12.13.1
+@dvhb/icons/1.0.6 linux-x64 node-v12.13.1
 $ dvhb-icons --help [COMMAND]
 USAGE
   $ dvhb-icons COMMAND
@@ -52,7 +52,7 @@ EXAMPLE
   $ dvhb-icons figma2svg
 ```
 
-_See code: [src/commands/figma2svg.ts](https://github.com/dvhb/icons/blob/v1.0.5/src/commands/figma2svg.ts)_
+_See code: [src/commands/figma2svg.ts](https://github.com/dvhb/icons/blob/v1.0.6/src/commands/figma2svg.ts)_
 
 ## `dvhb-icons generate`
 
@@ -72,7 +72,7 @@ EXAMPLE
   $ dvhb-icons generate
 ```
 
-_See code: [src/commands/generate.ts](https://github.com/dvhb/icons/blob/v1.0.5/src/commands/generate.ts)_
+_See code: [src/commands/generate.ts](https://github.com/dvhb/icons/blob/v1.0.6/src/commands/generate.ts)_
 
 ## `dvhb-icons help [COMMAND]`
 
