@@ -78,7 +78,7 @@ export default class Figma2svg extends Base {
   }
 
   formatIconName = (component: string) => {
-    const name = last(component.split('/'));
+    const name = last(component.replace(/\s/g, '').split('/'));
     const isValidName = /^\w+$/.test(name);
     if (!isValidName) {
       showError(`Icon name "${name}" contains non-english letters`);
