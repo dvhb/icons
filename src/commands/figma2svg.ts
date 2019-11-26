@@ -61,25 +61,15 @@ export default class Figma2svg extends Base {
   }
 
   async getDocument() {
-    try {
-      const { data } = await this.client.file(this.flags.fileId);
-      return data.document;
-    } catch (e) {
-      this.error(e);
-    }
+    const { data } = await this.client.file(this.flags.fileId).catch(this.error);
+    return data.document;
   }
 
   async getImageUrls(ids: string[]) {
-    try {
-      const { data } = await this.client.fileImages(this.flags.fileId, {
-        ids,
-        scale: 1,
-        format: 'svg',
-      });
-      return data.images;
-    } catch (e) {
-      this.error(e);
-    }
+    const { data } = await this.client
+      .fileImages(this.flags.fileId, { ids, scale: 1, format: 'svg' })
+      .catch(this.error);
+    return data.images;
   }
 
   async findComponents(document: Document) {
