@@ -90,12 +90,6 @@
     ]
   },
   "release": {
-    "extends": "@oclif/semantic-release",
-    "plugins": [
-      "@semantic-release/npm",
-      {
-        "allowSameVersion": true
-      }
-    ]
+    "extends": "@oclif/semantic-release"
   }
 }
