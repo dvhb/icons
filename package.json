@@ -28,7 +28,7 @@
     "lint": "tslint -p tsconfig.json -c tslint.json -t verbose",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
     "postpack": "rm -f oclif.manifest.json && rm -f tsconfig.tsbuildinfo",
-    "semantic-release": "semantic-release",
+    "semantic-release": "semantic-release -e @oclif/semantic-release",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
     "posttest": "tslint -p test -t stylish",
     "version": "oclif-dev readme && git add README.md"
@@ -90,20 +90,6 @@
     "bin": "dvhb-icons",
     "plugins": [
       "@oclif/plugin-help"
-    ]
-  },
-  "release": {
-    "plugins": [
-      "@semantic-release/npm",
-      {
-        "path": "@semantic-release/git",
-        "assets": [
-          "package.json",
-          "CHANGELOG.md",
-          "README.md",
-          "docs"
-        ]
-      }
     ]
   }
 }
