@@ -34,11 +34,9 @@ export const isUndefined = (val: unknown): val is undefined => val === undefined
 export const isNumber = (val: unknown): val is number => typeof val === 'number' && val === val;
 
 export const toCamelCase = (str: string) => {
-  const s =
-    str &&
-    str
-      .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)!
-      .map(x => x.slice(0, 1).toUpperCase() + x.slice(1).toLowerCase())
-      .join('');
+  const s = str
+    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)!
+    .map(x => x.slice(0, 1).toUpperCase() + x.slice(1).toLowerCase())
+    .join('');
   return s.slice(0, 1).toLowerCase() + s.slice(1);
 };
