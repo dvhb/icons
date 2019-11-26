@@ -19,7 +19,7 @@ $ npm install -g @dvhb/icons
 $ dvhb-icons COMMAND
 running command...
 $ dvhb-icons (-v|--version|version)
-@dvhb/icons/0.1.5 darwin-x64 node-v12.10.0
+@dvhb/icons/1.0.2 linux-x64 node-v12.13.1
 $ dvhb-icons --help [COMMAND]
 USAGE
   $ dvhb-icons COMMAND
@@ -41,17 +41,18 @@ USAGE
   $ dvhb-icons figma2svg
 
 OPTIONS
-  -f, --fileId=fileId  (required) figma fileId
-  -h, --help           show CLI help
-  -i, --icons=icons    (required) [default: icons] icons folder
-  -p, --page=page      (required) [default: Icons] figma page
-  -t, --token=token    (required) figma token
+  -e, --exclude=exclude  comma separated frames for excluding
+  -f, --fileId=fileId    (required) figma fileId
+  -h, --help             show CLI help
+  -i, --icons=icons      (required) [default: icons] icons folder
+  -p, --page=page        (required) [default: Icons] figma page
+  -t, --token=token      (required) figma token
 
 EXAMPLE
   $ dvhb-icons figma2svg
 ```
 
-_See code: [src/commands/figma2svg.ts](https://github.com/dvhb/icons/blob/v0.1.5/src/commands/figma2svg.ts)_
+_See code: [src/commands/figma2svg.ts](https://github.com/dvhb/icons/blob/v1.0.2/src/commands/figma2svg.ts)_
 
 ## `dvhb-icons generate`
 
@@ -71,7 +72,7 @@ EXAMPLE
   $ dvhb-icons generate
 ```
 
-_See code: [src/commands/generate.ts](https://github.com/dvhb/icons/blob/v0.1.5/src/commands/generate.ts)_
+_See code: [src/commands/generate.ts](https://github.com/dvhb/icons/blob/v1.0.2/src/commands/generate.ts)_
 
 ## `dvhb-icons help [COMMAND]`
 
@@ -88,5 +89,5 @@ OPTIONS
   --all  see all commands in CLI
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.0/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.1/src/commands/help.ts)_
 <!-- commandsstop -->
