@@ -13,4 +13,4 @@ jobs:
     - stage: release
       node_js: lts/*
       script:
-        - npx semantic-release
+        - npm run semantic-release
