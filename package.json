@@ -8,8 +8,8 @@
   "homepage": "https://github.com/dvhb/icons",
   "bugs": "https://github.com/dvhb/icons/issues",
   "repository": {
-    "type" : "git",
-    "url" : "git@github.com:dvhb/icons.git"
+    "type": "git",
+    "url": "git@github.com:dvhb/icons.git"
   },
   "license": "MIT",
   "author": "Anton Savoskin @sairus2k",
@@ -93,6 +93,17 @@
     ]
   },
   "release": {
-    "extends": "@oclif/semantic-release"
+    "plugins": [
+      "@semantic-release/npm",
+      {
+        "path": "@semantic-release/git",
+        "assets": [
+          "package.json",
+          "CHANGELOG.md",
+          "README.md",
+          "docs"
+        ]
+      }
+    ]
   }
 }
