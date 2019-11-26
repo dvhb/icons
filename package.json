@@ -90,6 +90,6 @@
     ]
   },
   "release": {
-    "extend": "@oclif/semantic-release"
+    "extends": "@oclif/semantic-release"
   }
 }
