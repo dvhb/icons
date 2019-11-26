@@ -90,6 +90,20 @@
     ]
   },
   "release": {
-    "extends": "@oclif/semantic-release"
+    "extends": "@oclif/semantic-release",
+    "plugins": [
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md",
+            "package.json",
+            "package-lock.json",
+            "README.md"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\\n\\n${nextRelease.notes}"
+        }
+      ]
+    ]
   }
 }
