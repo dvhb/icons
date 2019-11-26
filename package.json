@@ -31,7 +31,7 @@
     "semantic-release": "semantic-release -e @oclif/semantic-release",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
     "posttest": "tslint -p test -t stylish",
-    "version": "oclif-dev readme && git add README.md && git checkout package.json"
+    "version": "oclif-dev readme && git add README.md"
   },
   "husky": {
     "hooks": {
