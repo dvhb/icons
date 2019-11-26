@@ -7,7 +7,7 @@ dvhb icons toolset
 [![Version](https://img.shields.io/npm/v/@dvhb/icons.svg)](https://npmjs.org/package/@dvhb/icons)
 [![Downloads/week](https://img.shields.io/npm/dw/@dvhb/icons.svg)](https://npmjs.org/package/@dvhb/icons)
 [![License](https://img.shields.io/npm/l/@dvhb/icons.svg)](https://github.com/dvhb/icons/blob/master/package.json)
-
+[![Travis (.org)](https://img.shields.io/travis/dvhb/icons)](https://travis-ci.org/dvhb/icons)
 <!-- toc -->
 * [Usage](#usage)
 * [Commands](#commands)
