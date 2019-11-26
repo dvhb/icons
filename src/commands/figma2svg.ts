@@ -25,6 +25,7 @@ export default class Figma2svg extends Base {
     token: flags.string({ char: 't', description: 'figma token', required: true, env: 'FIGMA_TOKEN' }),
     fileId: flags.string({ char: 'f', description: 'figma fileId', required: true, env: 'FIGMA_FILE_ID' }),
     page: flags.string({ char: 'p', description: 'figma page', required: true, default: 'Icons', env: 'FIGMA_PAGE' }),
+    exclude: flags.string({ char: 'e', description: 'comma separated frames for excluding', default: '' }),
   };
 
   flags = this.parse(Figma2svg).flags;
@@ -124,8 +125,13 @@ export default class Figma2svg extends Base {
       return;
     }
 
+    const exclude = this.flags.exclude.toLowerCase().split(',');
     showInfo('Writing icons to files');
     frameNames.forEach(frameName => {
+      if (exclude.includes(frameName.toLowerCase())) {
+        showInfo(`"${frameName}" frame was excluded`);
+        return;
+      }
       const iconKeys = this.frames[frameName];
       iconKeys.forEach(async key => {
         const iconPath = resolve(this.flags.icons, this.formatIconName(components[key]));
