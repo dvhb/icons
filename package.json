@@ -22,13 +22,13 @@
     "dvhb-icons": "./bin/run"
   },
   "scripts": {
+    "lint": "tslint -p tsconfig.json -c tslint.json -t verbose",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
     "postpack": "rm -f oclif.manifest.json && rm -f tsconfig.tsbuildinfo",
+    "semantic-release": "semantic-release",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
     "posttest": "tslint -p test -t stylish",
-    "version": "oclif-dev readme && git add README.md",
-    "semantic-release": "semantic-release",
-    "lint": "tslint -p tsconfig.json -c tslint.json -t verbose"
+    "version": "oclif-dev readme && git add README.md"
   },
   "husky": {
     "hooks": {
@@ -61,6 +61,7 @@
     "@commitlint/config-conventional": "^8.2.0",
     "@dvhb/tslint-config": "^1.0.9",
     "@oclif/dev-cli": "^1.22.2",
+    "@oclif/semantic-release": "^3.1.1",
     "@oclif/test": "^1.2.5",
     "@types/chai": "^4.2.5",
     "@types/dotenv": "^8.2.0",
@@ -87,5 +88,8 @@
     "plugins": [
       "@oclif/plugin-help"
     ]
+  },
+  "release": {
+    "extend": "@oclif/semantic-release"
   }
 }
