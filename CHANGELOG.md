@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/dvhb/icons/compare/v1.0.7...v1.1.0) (2019-11-28)
+
+
+### Features
+
+* **generate:** add supports for react-native icon generation ([b837de0](https://github.com/dvhb/icons/commit/b837de0e91beedd45df7bed33ea94fc6d01e5112))
+
 ## [1.0.7](https://github.com/dvhb/icons/compare/v1.0.6...v1.0.7) (2019-11-26)
 
 
