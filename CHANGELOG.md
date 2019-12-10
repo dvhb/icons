@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/dvhb/icons/compare/v1.1.0...v1.1.1) (2019-12-10)
+
+
+### Bug Fixes
+
+* missing lib folder in published package ([09fcd54](https://github.com/dvhb/icons/commit/09fcd540bc01336cfafcf969e2f0a23544a7738b))
+
 # [1.1.0](https://github.com/dvhb/icons/compare/v1.0.7...v1.1.0) (2019-11-28)
 
 
