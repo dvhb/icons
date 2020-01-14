@@ -10,7 +10,7 @@ const js2svg: SVGO.Js2SvgOptions = {
 };
 const plugins: SVGO.PluginConfig[] = [{ removeViewBox: false }];
 const svgoBase = new SVGO({ js2svg, plugins });
-const svgoClear = new SVGO({ js2svg, plugins: [...plugins, { removeAttrs: { attrs: '(stroke|fill)' } }] });
+const svgoClear = new SVGO({ js2svg, plugins: [...plugins, { removeAttrs: { attrs: '(stroke)' } }] });
 
 import { Base } from '../base';
 import { fetchSvg, isNumber, last, showError, showInfo, toCamelCase } from '../utils';
