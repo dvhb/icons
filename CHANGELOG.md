@@ -1,3 +1,11 @@
+## [1.2.1](https://github.com/dvhb/icons/compare/v1.2.0...v1.2.1) (2020-01-14)
+
+
+### Bug Fixes
+
+* **figma2svg:** don't remove fill ([9473a75](https://github.com/dvhb/icons/commit/9473a755db2022646a5d088ba6a2e272db5ea68a))
+* **generate:** optional template option ([106a4bb](https://github.com/dvhb/icons/commit/106a4bbbca108a4db40a56269a4772f5eacddb9e))
+
 # [1.2.0](https://github.com/dvhb/icons/compare/v1.1.1...v1.2.0) (2020-01-14)
 
 
