@@ -10,7 +10,7 @@ export default class Generate extends Base {
   static flags = {
     ...Base.flags,
     components: flags.string({ char: 'c', description: 'components folder', required: true, default: 'components' }),
-    template: flags.string({ char: 't', description: 'template for icon files', required: true, default: 'template' }),
+    template: flags.string({ char: 't', description: 'template for icon files', default: '.svgrrc.js' }),
     native: flags.boolean({ char: 'n', description: 'generate icons for react-native', default: false }),
   };
 
