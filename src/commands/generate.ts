@@ -22,7 +22,7 @@ export default class Generate extends Base {
       '@svgr/cli',
       '--icon',
       '--template',
-      template,
+      template ? `--template ${template}` : '',
       '--ext',
       'tsx',
       '-d',
