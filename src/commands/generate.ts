@@ -21,7 +21,6 @@ export default class Generate extends Base {
     return runCommand('npx', [
       '@svgr/cli',
       '--icon',
-      '--template',
       template ? `--template ${template}` : '',
       '--ext',
       'tsx',
