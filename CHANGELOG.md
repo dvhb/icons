@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/dvhb/icons/compare/v1.1.1...v1.2.0) (2020-01-14)
+
+
+### Features
+
+* **generate:** optional template option ([9d72313](https://github.com/dvhb/icons/commit/9d72313a2649cbd6986b3c651d558654414216d6))
+
 ## [1.1.1](https://github.com/dvhb/icons/compare/v1.1.0...v1.1.1) (2019-12-10)
 
 
