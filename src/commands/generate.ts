@@ -32,13 +32,7 @@ export default class Generate extends Base {
     ]);
   }
 
-  async generateIndex() {
-    const { components } = this.flags;
-    return runCommand('npx', ['create-index', components, '--extensions', 'tsx']);
-  }
-
   async run() {
     await this.generateIcons();
-    await this.generateIndex();
   }
 }
