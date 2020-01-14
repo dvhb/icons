@@ -19,7 +19,7 @@ $ npm install -g @dvhb/icons
 $ dvhb-icons COMMAND
 running command...
 $ dvhb-icons (-v|--version|version)
-@dvhb/icons/1.2.1 linux-x64 node-v12.14.1
+@dvhb/icons/1.2.2 linux-x64 node-v12.14.1
 $ dvhb-icons --help [COMMAND]
 USAGE
   $ dvhb-icons COMMAND
@@ -52,7 +52,7 @@ EXAMPLE
   $ dvhb-icons figma2svg
 ```
 
-_See code: [src/commands/figma2svg.ts](https://github.com/dvhb/icons/blob/v1.2.1/src/commands/figma2svg.ts)_
+_See code: [src/commands/figma2svg.ts](https://github.com/dvhb/icons/blob/v1.2.2/src/commands/figma2svg.ts)_
 
 ## `dvhb-icons generate`
 
@@ -67,13 +67,13 @@ OPTIONS
   -h, --help                   show CLI help
   -i, --icons=icons            (required) [default: icons] icons folder
   -n, --native                 generate icons for react-native
-  -t, --template=template      (required) [default: template] template for icon files
+  -t, --template=template      [default: .svgrrc.js] template for icon files
 
 EXAMPLE
   $ dvhb-icons generate
 ```
 
-_See code: [src/commands/generate.ts](https://github.com/dvhb/icons/blob/v1.2.1/src/commands/generate.ts)_
+_See code: [src/commands/generate.ts](https://github.com/dvhb/icons/blob/v1.2.2/src/commands/generate.ts)_
 
 ## `dvhb-icons help [COMMAND]`
 

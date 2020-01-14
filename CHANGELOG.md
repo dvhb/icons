@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/dvhb/icons/compare/v1.2.1...v1.2.2) (2020-01-14)
+
+
+### Bug Fixes
+
+* **generate:** remove required from template option ([4143dd4](https://github.com/dvhb/icons/commit/4143dd499fd5d177898708b9eb74b5158c46459f))
+
 ## [1.2.1](https://github.com/dvhb/icons/compare/v1.2.0...v1.2.1) (2020-01-14)
 
 
